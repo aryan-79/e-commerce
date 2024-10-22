@@ -3,25 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --text-primary: #232323;
+  --text-emhasis: #000000;
+  --highlight: #1b84ff;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  font-family: var(--font-poppins);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .container {
+    @apply lg:max-w-[900px] xl:max-w-[1100px] 2xl:max-w-[1400px] mx-auto px-4;
+  }
+  .nav-list-item {
+    @apply hover:text-highlight;
+    > a {
+      @apply inline-block w-full;
+    }
+  }
+  input:not([type="checkbox"], [type="radio"]) {
+    @apply border border-[#d1d5db] w-full focus:border-highlight focus-visible:border-highlight rounded-md;
+  }
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
   }
 }
