@@ -15,12 +15,7 @@ const Accordion = (props: Props) => {
   };
 
   return (
-    <div
-      className={cn(
-        "grid",
-        isOpen ? "grid-rows-[auto,1fr]" : "grid-rows-[auto,0fr]"
-      )}
-    >
+    <div className={cn()}>
       <button
         onClick={handleClick}
         className="flex gap-2 items-center justify-between w-full"
@@ -35,7 +30,7 @@ const Accordion = (props: Props) => {
       <div
         className={cn(
           "overflow-hidden transition-[max-height] duration-500",
-          isOpen ? "max-h-[800px] mt-4" : "max-h-0"
+          isOpen ? "max-h-[800px]" : "max-h-0"
         )}
       >
         {props.children}

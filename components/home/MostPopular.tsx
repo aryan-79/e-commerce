@@ -60,7 +60,10 @@ const MostPopularInCategory = ({ category, href, products }: Props) => {
                   </div>
                 </div>
               </div>
-              <div className="border-x border-b rounded-b-md p-2 bg-background">
+              <Link
+                href="/product/1231ss"
+                className="border-x border-b rounded-b-md p-2 bg-background"
+              >
                 <p className="text-sm font-medium line-clamp-2">
                   {item.productName}
                 </p>
@@ -82,7 +85,7 @@ const MostPopularInCategory = ({ category, href, products }: Props) => {
                     </span>
                   )}
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

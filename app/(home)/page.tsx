@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "@/components/custom_ui/Carousel";
+import Carousel from "@/components/ui/Carousel";
 import TopCategories from "@/components/home/TopCategories";
 import CurrentSales from "@/components/home/CurrentSales";
 import MostPopularInCategory from "@/components/home/MostPopular";

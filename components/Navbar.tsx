@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Heart, Menu, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { FashionProductCategories } from "@/constants/categories";
-import Accordion from "./custom_ui/Accordion";
+import Accordion from "./ui/Accordion";
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
@@ -43,14 +43,14 @@ const Navbar = () => {
         {/* Mobile Nav */}
         <div
           className={cn(
-            "md:hidden transition-all duration-1000 text-sm",
+            "md:hidden transition-all duration-1000 text-sm z-50",
             isOpen &&
               "before:fixed before:left-0 before:top-0 before:h-screen before:w-screen before:bg-slate-800 before:opacity-70"
           )}
         >
           <div
             className={cn(
-              "fixed h-screen w-56 top-0 left-0 py-4 px-2 bg-slate-50 -translate-x-60 transition-all duration-500 z-10 [box-shadow:_3px_0_10px_#a8a5a5]",
+              "fixed h-screen w-56 top-0 left-0 py-4 px-2 bg-slate-50 -translate-x-60 transition-all duration-500 [box-shadow:_3px_0_10px_#a8a5a5]",
               isOpen && "transform-none before:content-['']"
             )}
           >
@@ -76,7 +76,7 @@ const Navbar = () => {
               </li>
               <li>
                 <Accordion title="Fashion">
-                  <ul className="px-2 text-sm space-y-4">
+                  <ul className="px-2 py-4 text-sm space-y-4">
                     {FashionProductCategories.map((category) => (
                       <li className="nav-list-item" key={category}>
                         <Link href={`/fashion/${category.toLowerCase()}`}>
