@@ -1,20 +1,19 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { StarFilledIcon } from "@radix-ui/react-icons";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, Heart } from "lucide-react";
+import { ChevronLeft, Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, use } from "react";
 
 type PropsType = {
   productDetails: {};
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-const ProductPage = ({ params }: PropsType) => {
+const ProductPage = (props: PropsType) => {
+  const params = use(props.params);
   const router = useRouter();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,9 +34,10 @@ const ProductPage = ({ params }: PropsType) => {
     };
 
     const handleClick = () => {
+      console.log("indic click");
       scrollContainer.scrollBy(
         currentImageIndex * scrollContainer.clientWidth,
-        0
+        0,
       );
     };
 
@@ -45,8 +45,9 @@ const ProductPage = ({ params }: PropsType) => {
     document.querySelectorAll(".indicator").forEach((indic) => {
       indic.addEventListener("click", () => {
         setCurrentImageIndex(
-          parseInt(indic.getAttribute("data-currimage") ?? "0")
+          parseInt(indic.getAttribute("data-currimage") ?? "0"),
         );
+        console.log("clicked", currentImageIndex);
         handleClick();
       });
     });
@@ -54,18 +55,18 @@ const ProductPage = ({ params }: PropsType) => {
   }, []);
 
   return (
-    <div className="lg:max-w-[900px] xl:max-w-[1100px] 2xl:max-w-[1400px] mx-auto lg:grid lg:grid-cols-2 lg:mt-8">
-      <div className="overflow-hidden shadow-lg flex-shrink-0 lg:hidden">
-        <div className="relative h-[55vh] md:h-60vh]">
+    <div className="mx-auto lg:mt-8 lg:grid lg:max-w-[900px] lg:grid-cols-2 xl:max-w-[1100px] 2xl:max-w-[1400px]">
+      <div className="flex-shrink-0 overflow-hidden shadow-lg lg:hidden">
+        <div className="md:h-60vh] relative h-[55vh]">
           <div
-            className="absolute top-0 left-0 w-full h-full overflow-x-auto snap-x snap-mandatory"
+            className="absolute left-0 top-0 h-full w-full snap-x snap-mandatory overflow-x-auto"
             ref={scrollContainerRef}
           >
             <div className="flex h-full">
               {images.map((img, index) => (
                 <div
                   key={index}
-                  className="w-full flex-shrink-0 snap-center relative"
+                  className="relative w-full flex-shrink-0 snap-center"
                 >
                   <Image
                     src={img}
@@ -80,7 +81,7 @@ const ProductPage = ({ params }: PropsType) => {
             </div>
           </div>
 
-          <div className="flex justify-between absolute w-full p-4">
+          <div className="absolute flex w-full justify-between p-4">
             <button
               className="border-none text-white"
               onClick={() => router.back()}
@@ -94,12 +95,12 @@ const ProductPage = ({ params }: PropsType) => {
               <Heart />
             </button>
           </div>
-          <div className="flex absolute bottom-4 left-1/2 gap-2 -translate-x-1/2 ">
+          <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
             {images.map((_, index) => (
               <div
                 className={cn(
-                  "h-2 w-2 rounded-full bg-red-400 indicator transition-all duration-500",
-                  currentImageIndex === index && "w-4"
+                  "indicator h-2 w-2 rounded-full bg-red-400 transition-all duration-500",
+                  currentImageIndex === index && "w-4",
                 )}
                 key={index}
                 data-currimage={index}
@@ -108,8 +109,8 @@ const ProductPage = ({ params }: PropsType) => {
           </div>
         </div>
       </div>
-      <div className="hidden lg:block h-[calc(100vh-8rem)]">
-        <div className="relative w-full h-full">
+      <div className="hidden h-[calc(100vh-8rem)] lg:block">
+        <div className="relative h-full w-full">
           <Image
             src={images[currentImageIndex]}
             fill
@@ -118,12 +119,12 @@ const ProductPage = ({ params }: PropsType) => {
             className="object-cover"
           />
 
-          <div className="flex flex-col gap-4 absolute left-4 top-4">
+          <div className="absolute left-4 top-4 flex flex-col gap-4">
             {images.map((image, index) => (
               <button
                 className={cn(
-                  "size-8 rounded-lg overflow-hidden relative",
-                  currentImageIndex === index && "border-2 border-highlight"
+                  "relative size-8 overflow-hidden rounded-lg",
+                  currentImageIndex === index && "border-2 border-highlight",
                 )}
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
@@ -141,10 +142,10 @@ const ProductPage = ({ params }: PropsType) => {
         </div>
       </div>
       <div className="container">
-        <span className="bg-highlight rounded-lg py-1 px-2 mt-4 inline-block text-sm text-white">
+        <span className="mt-4 inline-block rounded-lg bg-highlight px-2 py-1 text-sm text-white">
           Fashion
         </span>
-        <h1 className="text-emphasisText text-lg font-semibold">
+        <h1 className="text-lg font-semibold text-emphasisText">
           Product {params.id}
         </h1>
         {/* Description */}
@@ -153,41 +154,37 @@ const ProductPage = ({ params }: PropsType) => {
           deserunt numquam exercitationem autem iusto vel eius rerum tenetur
           cupiditate nobis.
         </p>
-        <div className="flex justify-between items-center my-4">
-          <p>
-            <StarFilledIcon
-              fontSize="1rem"
-              color="#f28d30"
-              className="inline"
-            />{" "}
-            <span className="font-semibold">4.5</span> (2.6k reviews)
-          </p>
+        <div className="my-4 flex items-center justify-between">
+          <div className="flex gap-1">
+            <Star color="#f28d30" className="inline size-5" />{" "}
+            <p className="font-semibold">4.5</p> (2.6k reviews)
+          </div>
 
           <div className="flex gap-4">
-            <div className="rounded-full size-4 bg-green-400"></div>
-            <div className="rounded-full size-4 bg-yellow-400"></div>
-            <div className="rounded-full size-4 bg-blue-400"></div>
-            <div className="rounded-full size-4 bg-gray-400"></div>
+            <div className="size-4 rounded-full bg-green-400"></div>
+            <div className="size-4 rounded-full bg-yellow-400"></div>
+            <div className="size-4 rounded-full bg-blue-400"></div>
+            <div className="size-4 rounded-full bg-gray-400"></div>
           </div>
         </div>
         {/* Specifications */}
         <h4 className="font-semibold">Specifications</h4>
         <div className="mt-2 space-y-1">
-          <div className="text-sm font-[500] flex justify-between">
+          <div className="flex justify-between text-sm font-[500]">
             <span>Brand</span>{" "}
-            <span className="font-normal text-xs">Clothing</span>
+            <span className="text-xs font-normal">Clothing</span>
           </div>
-          <div className="text-sm font-[500] flex justify-between">
+          <div className="flex justify-between text-sm font-[500]">
             <span>Weight</span>{" "}
-            <span className="font-normal text-xs">250gm</span>
+            <span className="text-xs font-normal">250gm</span>
           </div>
-          <div className="text-sm font-[500] flex justify-between">
+          <div className="flex justify-between text-sm font-[500]">
             <span>Condition</span>{" "}
-            <span className="font-normal text-xs">NEW</span>
+            <span className="text-xs font-normal">NEW</span>
           </div>
-          <div className="text-sm font-[500] flex justify-between">
+          <div className="flex justify-between text-sm font-[500]">
             <span>Category</span>{" "}
-            <span className="font-normal text-xs">Fashion clothing</span>
+            <span className="text-xs font-normal">Fashion clothing</span>
           </div>
         </div>
       </div>

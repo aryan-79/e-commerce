@@ -8,17 +8,19 @@ import React, { Suspense } from "react";
 export const dynamic = "force-dynamic";
 
 type PropsType = {
-  searchParams: {
+  searchParams: Promise<{
     category: string;
-  };
+  }>;
 };
 
-const ProductPage = async ({ searchParams }: PropsType) => {
+const ProductPage = async (props: PropsType) => {
+  const searchParams = await props.searchParams;
   const { category } = searchParams;
+  console.log(category);
   return (
     <div className="container py-2">
-      <div className="flex justify-between items-center mb-4">
-        <Link href="/" className="font-semibold text-xl uppercase">
+      <div className="mb-4 flex items-center justify-between">
+        <Link href="/" className="text-xl font-semibold uppercase">
           Logo
         </Link>
         <Filter />
@@ -47,9 +49,8 @@ const Products = async () => {
     });
   };
   const products = await getProducts();
-  console.log(products);
   return (
-    <div className="flex items-center relative">
+    <div className="relative flex items-center">
       <Link href="/product/uoiuoqoper" className="relative w-20">
         <Image
           src="/fans.png"
@@ -64,7 +65,7 @@ const Products = async () => {
         className="flex flex-col justify-center py-4"
       >
         <p className="semibold text-lg">{products}</p>
-        <p className="text-highlight text-sm">400mm, Blue tone</p>
+        <p className="text-sm text-highlight">400mm, Blue tone</p>
 
         <p className="text-sm">
           <span className="text-green-600">20% off</span>{" "}
@@ -72,7 +73,7 @@ const Products = async () => {
           3,200
         </p>
       </Link>
-      <button className="size-12 rounded-full bg-[#1b84ff]/20 text-highlight grid place-content-center border hover:bg-[#1b84ff]/40 absolute right-0 bottom-4">
+      <button className="absolute bottom-4 right-0 grid size-12 place-content-center rounded-full border bg-[#1b84ff]/20 text-highlight hover:bg-[#1b84ff]/40">
         <ShoppingCart />
       </button>
     </div>
