@@ -1,27 +1,38 @@
+import Logo from "@/components/Logo";
 import Filter from "@/components/product/Filter";
 import ProductListSkeleton from "@/components/skeleton/ProductListSkeleton";
+import { ProductCategories } from "@/constants/categories";
+import { capitalizeFirstLetter } from "@/lib/utils";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
 
-export const dynamic = "force-dynamic";
-
-type PropsType = {
-  searchParams: Promise<{
+type Params = {
+  category: Promise<{
     category: string;
   }>;
 };
 
-const ProductPage = async (props: PropsType) => {
-  const searchParams = await props.searchParams;
-  const { category } = searchParams;
+export async function generateMetadata({ params }: { params: Params }) {
+  const { category } = await params;
+  return {
+    title: `Ecom - ${capitalizeFirstLetter(category.toString())}`,
+  };
+}
+
+const ProductPage = async ({ params }: { params: Params }) => {
+  const { category } = await params;
   console.log(category);
+
+  if (!ProductCategories.includes(category.toString())) {
+    return <div>Category doesnt exist</div>;
+  }
   return (
     <div className="container py-2">
       <div className="mb-4 flex items-center justify-between">
-        <Link href="/" className="text-xl font-semibold uppercase">
-          Logo
+        <Link href="/">
+          <Logo />
         </Link>
         <Filter />
       </div>

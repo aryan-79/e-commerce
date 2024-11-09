@@ -13,6 +13,7 @@ function getName() {
     const timeout = setTimeout(() => {
       return resolve("productName");
     }, 1000);
+    return () => clearTimeout(timeout);
   });
 }
 

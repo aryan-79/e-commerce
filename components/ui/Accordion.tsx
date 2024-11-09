@@ -18,7 +18,7 @@ const Accordion = (props: Props) => {
     <div className={cn()}>
       <button
         onClick={handleClick}
-        className="flex gap-2 items-center justify-between w-full"
+        className="flex h-auto w-full items-center justify-between gap-2 p-0"
         aria-expanded={isOpen}
       >
         {props.title}{" "}
@@ -30,7 +30,7 @@ const Accordion = (props: Props) => {
       <div
         className={cn(
           "overflow-hidden transition-[max-height] duration-500",
-          isOpen ? "max-h-[800px]" : "max-h-0"
+          isOpen ? "max-h-[800px]" : "max-h-0",
         )}
       >
         {props.children}

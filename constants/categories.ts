@@ -1,10 +1,11 @@
-const Product_Categories = [
-  "Fashion",
-  "Electronics",
-  "Automobiles",
-  "Furniture",
+const ProductCategories = [
+  "fashion",
+  "mobiles",
+  "appliances",
+  "automobiles",
+  "furniture",
 ];
 
-const FashionProductCategories = ["Clothing", "Accessories", "Footwear"];
+const FashionProductCategories = ["clothing", "accessories", "footwear"];
 
-export { Product_Categories, FashionProductCategories };
+export { ProductCategories, FashionProductCategories };
