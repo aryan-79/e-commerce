@@ -17,6 +17,7 @@ interface DropdownProps
 }
 
 const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
+  const [triggerLabel, setTriggerLabel] = useState<string>(title);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const selectRef = useRef<HTMLSelectElement>(null);
@@ -50,7 +51,7 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
   return (
     <div className="relative w-full bg-white" ref={wrapperRef}>
       <button
-        className="flex h-10 w-full items-center justify-between border border-[#d1d5db] p-2"
+        className="flex h-10 w-full items-center justify-between rounded-md border border-[#d1d5db] p-2"
         role="menu"
         aria-expanded={isExpanded}
         onClick={(event: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,7 +60,7 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
           setIsExpanded(!isExpanded);
         }}
       >
-        <span className="pointer-events-none">{title}</span>
+        <span className="pointer-events-none">{triggerLabel}</span>
         <ChevronDown
           className={cn(
             "size-4 transition-transform duration-150",
@@ -76,7 +77,10 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
               )}
               value={option.toLowerCase()}
               key={`option${index}`}
-              onClick={() => handleOptionChange(option.toLowerCase())}
+              onClick={() => {
+                handleOptionChange(option.toLowerCase());
+                setTriggerLabel(option);
+              }}
             >
               {selectRef.current?.value === option.toLowerCase() && (
                 <span className="mr-2">&#10003;</span>

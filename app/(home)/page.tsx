@@ -23,12 +23,12 @@ export default function Home() {
         </h1>
         <MostPopularInCategory
           category="fashion"
-          href="/fashion"
+          href="/product?category=fashion"
           products={MOST_POPULAR_IN_FASHION}
         />
         <MostPopularInCategory
           category="electronics"
-          href="/electronics"
+          href="/product?category=electronics"
           products={MOST_POPULAR_IN_FASHION}
         />
       </section>

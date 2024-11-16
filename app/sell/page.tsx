@@ -1,3 +1,4 @@
+import Logo from "@/components/Logo/Logo";
 import Label from "@/components/ui/Label";
 import Select from "@/components/ui/Select";
 import { Product_Categories } from "@/constants/categories";
@@ -14,7 +15,7 @@ const SellerPage = () => {
     <div className="grid h-screen place-items-center">
       <div className="flex min-h-[400px] w-11/12 flex-col items-center rounded-lg p-6 shadow-xl md:w-1/2">
         <div className="blob mx-auto mb-8 grid h-16 w-20 place-items-center">
-          <Signature className="size-12 text-slate-300" />
+          <Logo size={32} />
         </div>
 
         <form action={action} className="w-full space-y-4">
@@ -31,6 +32,7 @@ const SellerPage = () => {
                 inputMode="numeric"
                 name="amount"
                 id="amount"
+                min={0}
               />
             </div>
             <div className="mb-4">
@@ -40,6 +42,7 @@ const SellerPage = () => {
                 inputMode="numeric"
                 name="discount"
                 id="discount"
+                min={0}
               />
             </div>
           </div>
@@ -65,10 +68,13 @@ const SellerPage = () => {
                 name="weight"
                 id="weight"
                 inputMode="numeric"
+                min={0}
               />
             </div>
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit" className="primary-btn w-full rounded-md">
+            Submit
+          </button>
         </form>
       </div>
     </div>
