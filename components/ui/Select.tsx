@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/lib/utils";
+import { capitalizeFirstLetter, cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import React, {
   SelectHTMLAttributes,
@@ -19,6 +19,7 @@ interface DropdownProps
 const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
   const [triggerLabel, setTriggerLabel] = useState<string>(title);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [selectedData, setSelectedData] = useState<string>(title);
 
   const selectRef = useRef<HTMLSelectElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -43,6 +44,7 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
     (value: string) => {
       if (selectRef.current) {
         selectRef.current.value = value;
+        setSelectedData(value);
       }
       setIsExpanded(false);
     },
@@ -68,28 +70,33 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
           )}
         />
       </button>
-      {isExpanded && (
-        <ul className="absolute right-0 top-12 z-20 grid w-full min-w-max gap-2 rounded-lg bg-inherit p-2 shadow-md animate-in">
-          {options.map((option, index) => (
-            <li
-              className={cn(
-                "w-full cursor-pointer p-2 text-center text-black before:text-inherit hover:bg-neutral-300",
-              )}
-              value={option.toLowerCase()}
-              key={`option${index}`}
-              onClick={() => {
-                handleOptionChange(option.toLowerCase());
-                setTriggerLabel(option);
-              }}
-            >
-              {selectRef.current?.value === option.toLowerCase() && (
-                <span className="mr-2">&#10003;</span>
-              )}
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+
+      <ul
+        className={cn(
+          "absolute right-0 top-12 z-20 grid w-full min-w-max gap-2 rounded-lg bg-inherit p-2 shadow-lg transition-all duration-200 ease-in-out",
+          isExpanded ? "visible opacity-100" : "invisible opacity-0",
+        )}
+        role="menu"
+      >
+        {options.map((option, index) => (
+          <li
+            className={cn(
+              "w-full cursor-pointer p-2 text-center text-black before:text-inherit hover:bg-neutral-300",
+            )}
+            value={option.toLowerCase()}
+            key={`option${index}`}
+            onClick={() => {
+              handleOptionChange(option.toLowerCase());
+              setTriggerLabel(option);
+            }}
+          >
+            {selectRef.current?.value === option.toLowerCase() && (
+              <span className="mr-2">&#10003;</span>
+            )}
+            {capitalizeFirstLetter(option)}
+          </li>
+        ))}
+      </ul>
 
       <select
         ref={selectRef}

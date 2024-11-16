@@ -1,20 +1,19 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { StarFilledIcon } from "@radix-ui/react-icons";
-// import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, Heart } from "lucide-react";
+import { ChevronLeft, Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, use } from "react";
 
 type PropsType = {
   productDetails: {};
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-const ProductPage = ({ params }: PropsType) => {
+const ProductPage = (props: PropsType) => {
+  const params = use(props.params);
   const router = useRouter();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -35,6 +34,7 @@ const ProductPage = ({ params }: PropsType) => {
     };
 
     const handleClick = () => {
+      console.log("indic click");
       scrollContainer.scrollBy(
         currentImageIndex * scrollContainer.clientWidth,
         0,
@@ -47,6 +47,7 @@ const ProductPage = ({ params }: PropsType) => {
         setCurrentImageIndex(
           parseInt(indic.getAttribute("data-currimage") ?? "0"),
         );
+        console.log("clicked", currentImageIndex);
         handleClick();
       });
     });
@@ -155,14 +156,10 @@ const ProductPage = ({ params }: PropsType) => {
           cupiditate nobis.
         </p>
         <div className="my-4 flex items-center justify-between">
-          <p>
-            <StarFilledIcon
-              fontSize="1rem"
-              color="#f28d30"
-              className="inline"
-            />{" "}
-            <span className="font-semibold">4.5</span> (2.6k reviews)
-          </p>
+          <div className="flex gap-1">
+            <Star color="#f28d30" className="inline size-5" />{" "}
+            <p className="font-semibold">4.5</p> (2.6k reviews)
+          </div>
 
           <div className="flex gap-4">
             <div className="size-4 rounded-full bg-green-400"></div>

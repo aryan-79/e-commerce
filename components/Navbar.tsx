@@ -30,7 +30,7 @@ const Navbar = () => {
           </li>
         </ul>
         <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X /> : <Menu />}
+          {!isOpen && <Menu />}
         </button>
         <Link href="/wishlist" className="nav-list-item">
           <Heart />
