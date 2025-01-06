@@ -1,7 +1,9 @@
 import Logo from "@/components/Logo/Logo";
+import ImageSelector from "@/components/ui/ImageSelector";
 import Label from "@/components/ui/Label";
 import Select from "@/components/ui/Select";
 import { ProductCategories } from "@/constants/categories";
+import { redirect } from "next/navigation";
 import React from "react";
 
 const SellerPage = () => {
@@ -10,6 +12,7 @@ const SellerPage = () => {
     const { name, brand, category, weight, images } =
       Object.fromEntries(formData);
     console.log({ name, brand, category, weight, images });
+    redirect("/sell");
   };
   return (
     <div className="grid min-h-screen place-items-center">
@@ -23,7 +26,13 @@ const SellerPage = () => {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <div className="">
               <Label htmlFor="name">Product Name</Label>
-              <input type="text" name="name" id="name" />
+              <input
+                type="text"
+                name="name"
+                id="name"
+                minLength={1}
+                className="invalid:border-red-400"
+              />
             </div>
             <div className="">
               <Label htmlFor="amount">Amount (In NPR)</Label>
@@ -71,6 +80,9 @@ const SellerPage = () => {
                 name="category"
                 id="category"
               />
+            </div>
+            <div className="col-span-2">
+              <ImageSelector />
             </div>
           </div>
           <button type="submit" className="primary-btn w-full rounded-md">

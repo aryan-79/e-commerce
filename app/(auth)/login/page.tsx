@@ -29,7 +29,7 @@ const Login = () => {
           Don&apos;t have an account?{" "}
           <Link
             href="/signup"
-            className="text-highlight hover:text-highlightDark"
+            className="hover:text-highlight-800 text-highlight"
           >
             Sign up
           </Link>

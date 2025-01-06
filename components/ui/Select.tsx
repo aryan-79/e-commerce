@@ -19,7 +19,6 @@ interface DropdownProps
 const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
   const [triggerLabel, setTriggerLabel] = useState<string>(title);
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const [selectedData, setSelectedData] = useState<string>(title);
 
   const selectRef = useRef<HTMLSelectElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -44,7 +43,6 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
     (value: string) => {
       if (selectRef.current) {
         selectRef.current.value = value;
-        setSelectedData(value);
       }
       setIsExpanded(false);
     },
@@ -93,7 +91,7 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
             {selectRef.current?.value === option.toLowerCase() && (
               <span className="mr-2">&#10003;</span>
             )}
-            {capitalizeFirstLetter(option)}
+            {option}
           </li>
         ))}
       </ul>
@@ -102,7 +100,7 @@ const Select = ({ title, options, onChange, ...props }: DropdownProps) => {
         ref={selectRef}
         {...props}
         className="hidden"
-        defaultValue={options[0]}
+        defaultValue={triggerLabel}
       >
         {options.map((option, index) => (
           <option value={option.toLowerCase()} key={`select-option${index}`}>

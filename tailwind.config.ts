@@ -14,8 +14,10 @@ const config: Config = {
         foreground: "var(--foreground)",
         primaryText: "var(--text-primary)",
         emphasisText: "var(--text-emphasis)",
-        highlight: "var(--highlight)",
-        highlightDark: "var(--highlight-darker)",
+        highlight: {
+          DEFAULT: "var(--highlight)",
+          "800": "var(--highlight-darker)",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

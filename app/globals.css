@@ -46,7 +46,7 @@ body {
 
   button {
     &.primary-btn {
-      @apply bg-highlight text-white hover:bg-highlightDark;
+      @apply hover:bg-highlight-800 bg-highlight text-white;
     }
     &.secondary-btn {
     }

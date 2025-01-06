@@ -1,10 +1,15 @@
+"use client";
+import { signup } from "@/actions/auth";
 import Logo from "@/components/Logo/Logo";
 import Label from "@/components/ui/Label";
-import { Signature } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React, { useActionState } from "react";
 
 const SignUp = () => {
+  const initialState = {
+    success: false,
+  };
+  const [state, formAction, isPending] = useActionState(signup, initialState);
   return (
     <div className="flex h-screen items-center justify-center bg-[#f9fafb]">
       <div className="flex min-h-[450px] w-full max-w-[450px] flex-col justify-center rounded-lg bg-white p-6 shadow-xl">
@@ -13,7 +18,15 @@ const SignUp = () => {
         </div>
 
         <h1 className="mb-6 text-xl font-medium">Create your account</h1>
-        <form action="" className="space-y-4">
+        <form action={formAction} className="space-y-4">
+          <div>
+            <Label htmlFor="firstName">First Name</Label>
+            <input type="text" name="firstName" id="firstName" />
+          </div>
+          <div>
+            <Label htmlFor="lastName">Last Name</Label>
+            <input type="text" name="lastName" id="lastName" />
+          </div>
           <div>
             <Label htmlFor="email">Email Address</Label>
             <input type="text" name="email" id="email" />
@@ -30,7 +43,11 @@ const SignUp = () => {
               id="confirmPassword"
             />
           </div>
-          <button type="submit" className="primary-btn w-full rounded-md">
+          <button
+            type="submit"
+            className="primary-btn w-full rounded-md disabled:cursor-not-allowed"
+            disabled={isPending}
+          >
             Sign Up
           </button>
         </form>
@@ -38,7 +55,7 @@ const SignUp = () => {
           Already have an account?{" "}
           <Link
             href="/login"
-            className="text-highlight hover:text-highlightDark"
+            className="hover:text-highlight-800 text-highlight"
           >
             Login
           </Link>

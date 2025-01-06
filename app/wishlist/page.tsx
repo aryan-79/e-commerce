@@ -1,9 +1,13 @@
-import { WishListItem } from "@/components/WishlistItem";
 import React from "react";
+import BackButton from "@/components/ui/BackButton";
+import { WishListItem } from "@/components/WishlistItem";
 
 const WishlistPage = () => {
   return (
     <div className="container">
+      <div className="flex justify-between">
+        <BackButton />
+      </div>
       <WishListItem
         imageSrc="/fashion.png"
         title="Fashion"
