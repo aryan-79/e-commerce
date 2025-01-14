@@ -5,13 +5,13 @@ import Link from "next/link";
 import { FilterIcon } from "lucide-react";
 
 const categories = [
-  { name: "Mobiles", href: "/product?category=mobiles" },
+  { name: "Mobiles", href: "/mobiles" },
   {
     name: "Electronics and Accessories",
-    href: "/product?category=electronics",
+    href: "/electronics",
   },
-  { name: "Fashion", href: "/product?category=fashion" },
-  { name: "Grocery", href: "/product?category=grocery" },
+  { name: "Fashion", href: "/fashion" },
+  { name: "Grocery", href: "/grocery" },
 ];
 
 export default function FilterDropdown() {
@@ -49,12 +49,12 @@ export default function FilterDropdown() {
         aria-haspopup="true"
       >
         <span>Filter</span>
-        <FilterIcon className="w-4 h-4" />
+        <FilterIcon className="h-4 w-4" />
       </button>
 
       <ul
-        className={`absolute top-12 right-0 w-max bg-background border rounded-md shadow-lg transition-all duration-200 ease-in-out ${
-          isExpanded ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`absolute right-0 top-12 w-max rounded-md border bg-background shadow-lg transition-all duration-200 ease-in-out ${
+          isExpanded ? "visible opacity-100" : "invisible opacity-0"
         }`}
         role="menu"
       >
@@ -62,7 +62,7 @@ export default function FilterDropdown() {
           <li key={category.name} role="none">
             <Link
               href={category.href}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 focus:outline-none focus:bg-gray-200"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none"
               role="menuitem"
               onClick={() => setIsExpanded(false)}
             >

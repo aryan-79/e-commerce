@@ -8,11 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { Suspense } from "react";
 
-type Params = {
-  category: Promise<{
-    category: string;
-  }>;
-};
+type Params = Promise<{ category: string }>;
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { category } = await params;
@@ -25,7 +21,7 @@ const ProductPage = async ({ params }: { params: Params }) => {
   const { category } = await params;
   console.log(category);
 
-  if (!ProductCategories.includes(category.toString())) {
+  if (!ProductCategories.includes(category)) {
     return <div>Category doesnt exist</div>;
   }
   return (

@@ -45,13 +45,15 @@ body {
   }
 
   button {
+    @apply rounded-md;
+
     &.primary-btn {
-      @apply hover:bg-highlight-800 bg-highlight text-white;
+      @apply bg-highlight text-white hover:bg-highlight-800;
     }
-    &.secondary-btn {
-    }
+    /* &.secondary-btn {
+    } */
     &.outline-btn {
-      @apply flex items-center gap-4 text-nowrap rounded-md border px-4 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500;
+      @apply flex items-center gap-4 text-nowrap border px-4 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500;
     }
   }
 }

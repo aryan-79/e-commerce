@@ -20,7 +20,7 @@ const SignUp = () => {
         <h1 className="mb-6 text-xl font-medium">Create your account</h1>
         <form action={formAction} className="space-y-4">
           <div>
-            <Label htmlFor="firstName">First Name</Label>
+            <Label>First Name</Label>
             <input type="text" name="firstName" id="firstName" />
           </div>
           <div>
@@ -30,6 +30,10 @@ const SignUp = () => {
           <div>
             <Label htmlFor="email">Email Address</Label>
             <input type="text" name="email" id="email" />
+          </div>
+          <div>
+            <Label htmlFor="number">Phone Number</Label>
+            <input name="number" id="number" />
           </div>
           <div>
             <Label htmlFor="password">Password</Label>
@@ -55,7 +59,7 @@ const SignUp = () => {
           Already have an account?{" "}
           <Link
             href="/login"
-            className="hover:text-highlight-800 text-highlight"
+            className="text-highlight hover:text-highlight-800"
           >
             Login
           </Link>
