@@ -20,12 +20,8 @@ const SignUp = () => {
         <h1 className="mb-6 text-xl font-medium">Create your account</h1>
         <form action={formAction} className="space-y-4">
           <div>
-            <Label>First Name</Label>
-            <input type="text" name="firstName" id="firstName" />
-          </div>
-          <div>
-            <Label htmlFor="lastName">Last Name</Label>
-            <input type="text" name="lastName" id="lastName" />
+            <Label>Name</Label>
+            <input type="text" name="name" id="name" />
           </div>
           <div>
             <Label htmlFor="email">Email Address</Label>
