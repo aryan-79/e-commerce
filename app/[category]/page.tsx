@@ -2,7 +2,7 @@ import Logo from "@/components/Logo/Logo";
 import Filter from "@/components/product/Filter";
 import ProductListSkeleton from "@/components/skeleton/ProductListSkeleton";
 import { ProductCategories } from "@/constants/categories";
-import { capitalizeFirstLetter } from "@/lib/utils";
+import { capitalizeFirstLetter } from "@/lib/utils/common";
 import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
