@@ -1,0 +1,7 @@
+FROM postgres:17.4-alpine3.20
+
+ENV POSTGRES_USER=aryan
+ENV POSTGRES_PASSWORD=password
+ENV POSTGRES_DB=ecom_db
+
+EXPOSE 5432

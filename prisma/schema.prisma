@@ -3,34 +3,74 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  SELLER
+  ADMIN
 }
 
 model User {
-  id       String    @id @default(uuid())
-  email    String    @unique
-  name     String
-  password String
-  role     Int       @default(0)
-  products Product[]
+  id        String    @id @default(uuid())
+  email     String    @unique
+  name      String
+  password  String
+  number    String
+  role      Role      @default(USER)
+  products  Product[]
+  orders    Order[]
+  cart      Cart[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Session   Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
 model Product {
-  id            Int            @id @default(autoincrement())
-  seller        User           @relation(fields: [sellerId], references: [id])
+  id            Int      @id @default(autoincrement())
+  seller        User     @relation(fields: [sellerId], references: [id])
   sellerId      String
   name          String
   description   String
   price         Float
   discount      Int?
   category      String
-  productImages ProductImage[]
+  stock         Int
+  productImages String[]
+  Order         Order[]
+  Cart          Cart[]
 }
 
 model ProductImage {
-  // user User
-  product   Product @relation(fields: [productId], references: [id])
+  id  Int    @id @default(autoincrement())
+  url String @unique
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
   productId Int
-  url       String  @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  product   Product  @relation(fields: [productId], references: [id])
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
