@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 import { Metadata } from "next";
 import React, { ReactNode } from "react";
 
@@ -8,10 +8,12 @@ export const metadata: Metadata = {
 
 const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <main>
+    <>
       <Navbar />
-      {children}
-    </main>
+      <main>
+        {children}
+      </main>
+    </>
   );
 };
 

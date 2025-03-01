@@ -28,7 +28,7 @@ const MostPopularInCategory = ({ category, href, products }: Props) => {
       </div>
 
       <div className="overflow-x-auto pb-4 -mx-4 px-4">
-        <div className="grid grid-flow-col gap-4 min-w-max md:grid-flow-row md:grid-cols-[repeat(auto-fit,220px)]">
+        <div className="grid grid-flow-col gap-4 min-w-max md:grid-flow-row md:grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))]">
           {products.map((item, index) => (
             <div className="flex-shrink-0 w-52 group" key={index}>
               <div className="rounded-t-md aspect-[3/4] relative overflow-hidden shadow-md">

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Profile = () => {
+const Profile = async () => {
   return <div>Profile</div>;
 };
 

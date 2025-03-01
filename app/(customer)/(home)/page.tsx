@@ -1,11 +1,11 @@
 import React from "react";
-import Carousel from "@/components/ui/Carousel";
-import TopCategories from "@/components/home/TopCategories";
-import CurrentSales from "@/components/home/CurrentSales";
-import MostPopularInCategory from "@/components/home/MostPopular";
+import Carousel from "@/components/ui/carousel";
+import TopCategories from "@/components/home/top-categories";
+import CurrentSales from "@/components/home/current-sales";
+import MostPopularInCategory from "@/components/home/most-popular";
 import { MOST_POPULAR_IN_FASHION } from "@/constants/mostPopularInCategory";
-import PopularItems from "@/components/home/PopularItems";
-import TopSelection from "@/components/home/TopSelection";
+import PopularItems from "@/components/home/popular-items";
+import TopSelection from "@/components/home/top-selection";
 
 export default function Home() {
   return (

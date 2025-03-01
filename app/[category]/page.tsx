@@ -1,6 +1,6 @@
-import Logo from "@/components/Logo/Logo";
-import Filter from "@/components/product/Filter";
-import ProductListSkeleton from "@/components/skeleton/ProductListSkeleton";
+import Logo from "@/components/logo/logo";
+import Filter from "@/components/product/filter";
+import ProductListSkeleton from "@/components/skeleton/product-skeleton";
 import { ProductCategories } from "@/constants/categories";
 import { capitalizeFirstLetter } from "@/lib/utils/common";
 import { ShoppingCart } from "lucide-react";

@@ -1,11 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { CircleUserRound, Heart, Menu, ShoppingCart, X } from "lucide-react";
 import Link from "next/link";
 import { FashionProductCategories } from "@/constants/categories";
-import Accordion from "./ui/Accordion";
+import Accordion from "./ui/accordion";
 import { cn } from "@/lib/utils";
-import Logo from "./Logo/Logo";
+import Logo from "./logo/logo";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -74,7 +74,7 @@ const MobileNav = ({
       className={cn(
         "z-50 text-sm transition-all duration-1000 md:hidden",
         isOpen &&
-          "before:fixed before:left-0 before:top-0 before:h-screen before:w-screen before:bg-slate-800 before:opacity-70",
+        "before:fixed before:left-0 before:top-0 before:h-screen before:w-screen before:bg-slate-800 before:opacity-70",
       )}
     >
       <div

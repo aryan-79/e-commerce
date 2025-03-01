@@ -1,7 +1,7 @@
-import Logo from "@/components/Logo/Logo";
-import ImageSelector from "@/components/ui/ImageSelector";
-import Label from "@/components/ui/Label";
-import Select from "@/components/ui/Select";
+import Logo from "@/components/Logo/logo";
+import ImageSelector from "@/components/ui/image-selector";
+import Label from "@/components/ui/label";
+import Select from "@/components/ui/select";
 import { ProductCategories } from "@/constants/categories";
 import { redirect } from "next/navigation";
 import React from "react";

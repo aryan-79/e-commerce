@@ -1,5 +1,5 @@
 "use client";
-import { capitalizeFirstLetter, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import React, {
   SelectHTMLAttributes,

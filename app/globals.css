@@ -31,15 +31,19 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
   .container {
     @apply mx-auto px-4 lg:max-w-[900px] xl:max-w-[1100px] 2xl:max-w-[1400px];
   }
+
   .nav-list-item {
     @apply hover:text-highlight;
-    > a {
+
+    >a {
       @apply inline-block w-full;
     }
   }
+
   input:not([type="checkbox"], [type="radio"]) {
     @apply h-10 w-full rounded-md border border-[#d1d5db] p-2 focus:border-highlight focus-visible:border-highlight focus-visible:outline-none;
   }
@@ -50,8 +54,9 @@ body {
     &.primary-btn {
       @apply bg-highlight text-white hover:bg-highlight-800;
     }
-    /* &.secondary-btn {
-    } */
+
+    &.secondary-btn {}
+
     &.outline-btn {
       @apply flex items-center gap-4 text-nowrap border px-4 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500;
     }
@@ -62,6 +67,7 @@ body {
   :root {
     --radius: 0.5rem;
   }
+
   button:not(.accordion) {
     @apply h-10 p-2 transition-colors duration-150 focus-within:outline-highlight focus-visible:border-none focus-visible:outline-1 focus-visible:outline-highlight;
   }
@@ -69,11 +75,9 @@ body {
 
 .blob {
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  background-image: linear-gradient(
-    30deg,
-    rgba(163, 206, 255, 1),
-    rgba(243, 121, 121, 0.5)
-  );
+  background-image: linear-gradient(30deg,
+      rgba(163, 206, 255, 1),
+      rgba(243, 121, 121, 0.5));
 }
 
 .animate-in {
@@ -85,6 +89,7 @@ body {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
